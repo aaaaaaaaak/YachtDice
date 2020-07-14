@@ -73,7 +73,7 @@ class Turn: # 점수 판정 및 주사위 합쳐서 구성
         # if onUp == TRUE:
         self.dc.roll_dice()
 
-class Score: # 점수 판정, 핸드 랭크 ***** 우선순위 1
+class Score: # 점수 판정, 핸드 랭크
     __all_dice = []
 
 
@@ -187,7 +187,7 @@ class Score: # 점수 판정, 핸드 랭크 ***** 우선순위 1
         return 0
 
 
-    def sstraight_score(self, parameter_list):
+    def sstraight_score(self):
         if self.__all_dice[0] == 1 and self.__all_dice[3] == 4:
             if self.__all_dice[1] != 3 and self.__all_dice[2] != 2:
                 return SSTRAIGHT_SCORE
@@ -203,7 +203,7 @@ class Score: # 점수 판정, 핸드 랭크 ***** 우선순위 1
         return 0
 
 
-    def lstraight_score(self, parameter_list):
+    def lstraight_score(self):
         if self.__all_dice is [1, 2, 3, 4, 5]:
             return LSTRAIGHT_SCORE
         if self.__all_dice is [2, 3, 4, 5, 6]:
@@ -216,6 +216,24 @@ class Score: # 점수 판정, 핸드 랭크 ***** 우선순위 1
             if self.__all_dice[0] == i and self.__all_dice[4] == i:
                 return YACHT_SCORE
         return 0
+
+
+    def upper_section_score(self):
+        return (self.sub_total_score() + self.bonus_score())
+
+
+    def lower_section_score(self):
+        return (
+            self.choice_score() +
+            self.four_of_a_kind_score() +
+            self.fullhouse_score() +
+            self.sstraight_score() +
+            self.lstraight_score() +
+            self.yacht_score())
+
+
+    def total_score(self):
+        return (self.upper_section_score() + self.lower_section_score())
 
 
 
