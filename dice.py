@@ -20,10 +20,10 @@ class Dice:
 
     def roll_dice(self): # 각 라운드 처음과 나머지 구분, 처음에는 dice, save 구분
         for die in self.__dice:
-            self.__dice[die] = random.randint(1, 6)
+            self.__dice[die] = random.randint(ACE, SIXES)
     
 
-    def sav_dice(self, saveList): # 선택한 주사위의 값을 리스트로 받아서 처리
+    def save_dice(self, saveList): # 선택한 주사위의 값을 리스트로 받아서 처리
         if saveList == []:
             return
         for i in saveList:
