@@ -23,7 +23,7 @@ class Dice:
             self.__dice[die] = random.randint(ACE, SIXES)
     
 
-    def save_dice(self, saveList): # 선택한 주사위의 값을 리스트로 받아서 처리
+    def keep_dice(self, saveList): # 선택한 주사위의 값을 리스트로 받아서 처리
         if saveList == []:
             return
         for i in saveList:
@@ -34,7 +34,7 @@ class Dice:
             del(self.__dice[key])
     
 
-    def unsave_dice(self, unsaveList): # saved -> dice
+    def disband_dice(self, unsaveList): # saved -> dice
         if unsaveList == []:
             return
         for i in unsaveList:
