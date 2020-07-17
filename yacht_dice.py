@@ -234,11 +234,3 @@ class Score: # 점수 판정, 핸드 랭크
 
     def total_score(self):
         return (self.upper_section_score() + self.lower_section_score())
-
-
-
-d = Dice()
-
-saveList = list(map(int, input("Save Dice Input (int int int ...) : ").split()))
-
-unsaveList = list(map(int, input("Unsave Dice Input (int int int ...) : ").split()))
