@@ -49,13 +49,38 @@ def main():
 
         # total
         pygame.draw.rect(window, WHITE, [15, 655, 340, 50], 2)
-        pygame.draw.line(window, WHITE, [155, 655], [155, 705], 2)
+        pygame.draw.line(window, WHITE, [155, 655], [155, 705], 4)
         pygame.draw.line(window, WHITE, [255, 655], [255, 705], 1)
         #pygame.draw.line(window, WHITE, [], [], 2)
 
         #scores width 340 height 40 
+        pygame.draw.rect(window, WHITE, [15, 450, 340, 200], 2)
+        pygame.draw.line(window, WHITE, [15, 490], [355, 490], 2)
+        pygame.draw.line(window, WHITE, [15, 530], [355, 530], 2)
+        pygame.draw.line(window, WHITE, [15, 570], [355, 570], 2)
+        pygame.draw.line(window, WHITE, [15, 610], [355, 610], 2)
+        pygame.draw.line(window, WHITE, [155, 450], [155, 650], 4)
+        pygame.draw.line(window, WHITE, [255, 450], [255, 650], 1)
+
+        #choice score 340 40
+        pygame.draw.rect(window,WHITE, [15, 405, 340, 40], 2)
+        pygame.draw.line(window, WHITE, [155, 405], [155, 445], 4)
+        pygame.draw.line(window, WHITE, [255, 405], [255, 445], 1)
+
+        #score ace to sixes 340, 300
+        pygame.draw.rect(window, WHITE, [15, 100, 340, 300], 2)
+        pygame.draw.line(window, WHITE, [15, 140], [355, 140], 2)
+        pygame.draw.line(window, WHITE, [15, 180], [355, 180], 2)
+        pygame.draw.line(window, WHITE, [15, 220], [355, 220], 2)
+        pygame.draw.line(window, WHITE, [15, 260], [355, 260], 2)
+        pygame.draw.line(window, WHITE, [15, 300], [355, 300], 2)
+        pygame.draw.line(window, WHITE, [15, 340], [355, 340], 2)
+        pygame.draw.line(window, WHITE, [155, 365], [355, 365], 1)
+        pygame.draw.line(window, WHITE, [155, 100], [155, 400], 4)
+        pygame.draw.line(window, WHITE, [255, 100], [255, 400], 1)
+
         window.blit(text_title, [385, 35])
-        window.blit(text_total, [55, 670])
+        window.blit(text_total, [53, 670])
 
         pygame.display.update()
         fps_clock.tick(30)
