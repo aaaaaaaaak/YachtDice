@@ -34,6 +34,19 @@ font_obj24 = pygame.font.Font("font/fff-forward/FFFFORWA.TTF", 24)
 font_obj32 = pygame.font.Font("font/fff-forward/FFFFORWA.TTF", 32)
 text_title = font_obj32.render("Yacht Dice", False, WHITE)
 text_total = font_obj18.render("Total", False, WHITE)
+text_ace = font_obj16.render("Ace", False, WHITE)
+text_deuces = font_obj16.render("Deuces", False, WHITE)
+text_threes = font_obj16.render("Threes", False, WHITE)
+text_fours = font_obj16.render("Fours", False, WHITE)
+text_fives = font_obj16.render("Fives", False, WHITE)
+text_sixes = font_obj16.render("Sixes", False, WHITE)
+text_subtotal = font_obj18.render("SubTotal", False, WHITE)
+text_choice = font_obj16.render("Choice", False, WHITE)
+text_fourofakind = font_obj16.render("Quads", False, WHITE)
+text_fullhouse = font_obj16.render("F.House", False, WHITE)
+text_sstraight = font_obj16.render("S.Strght", False, WHITE)
+text_lstraight = font_obj16.render("L.Strght", False, WHITE)
+text_yacht = font_obj16.render("Yacht", False, WHITE)
 
 fps_clock = pygame.time.Clock()
 
@@ -77,11 +90,17 @@ def main():
         pygame.draw.line(window, WHITE, [15, 610], [355, 610], 2)
         pygame.draw.line(window, WHITE, [155, 450], [155, 650], 4)
         pygame.draw.line(window, WHITE, [255, 450], [255, 650], 1)
+        window.blit(text_fourofakind, [65, 460])
+        window.blit(text_fullhouse, [65, 500])
+        window.blit(text_sstraight, [65, 540])
+        window.blit(text_lstraight, [65, 580])
+        window.blit(text_yacht, [65, 620])
 
         #choice score 340 40
         pygame.draw.rect(window,WHITE, [15, 405, 340, 40], 2)
         pygame.draw.line(window, WHITE, [155, 405], [155, 445], 4)
         pygame.draw.line(window, WHITE, [255, 405], [255, 445], 1)
+        window.blit(text_choice, [65, 415])
 
         #score ace to sixes 340, 300
         pygame.draw.rect(window, WHITE, [15, 100, 340, 300], 2)
@@ -100,6 +119,13 @@ def main():
         window.blit(dice_fours32, [20, 225])
         window.blit(dice_fives32, [20, 265])
         window.blit(dice_sixes32, [20, 305])
+        window.blit(text_ace, [65, 112])
+        window.blit(text_deuces, [65, 152])
+        window.blit(text_threes, [65, 192])
+        window.blit(text_fours, [65, 232])
+        window.blit(text_fives, [65, 272])
+        window.blit(text_sixes, [65, 312])
+        window.blit(text_subtotal, [34, 360])
 
         #player initial
         pygame.draw.rect(window, WHITE, [155, 40, 200, 60], 2)
