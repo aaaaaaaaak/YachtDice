@@ -27,6 +27,13 @@ dice_threes64 = pygame.image.load("image/threes64.png")
 dice_fours64 = pygame.image.load("image/fours64.png")
 dice_fives64 = pygame.image.load("image/fives64.png")
 dice_sixes64 = pygame.image.load("image/sixes64.png")
+choice32 = pygame.image.load("image/choice32.png")
+fourofakind32 = pygame.image.load("image/quads32.png")
+fullhouse32 = pygame.image.load("image/fullhouse32.png")
+sstraight32 = pygame.image.load("image/sstraight32.png")
+lstraight32 = pygame.image.load("image/lstraight32.png")
+yacht32 = pygame.image.load("image/yacht32.png")
+
 
 font_obj16 = pygame.font.Font("font/fff-forward/FFFFORWA.TTF", 16)
 font_obj18 = pygame.font.Font("font/fff-forward/FFFFORWA.TTF", 18)
@@ -90,6 +97,11 @@ def main():
         pygame.draw.line(window, WHITE, [15, 610], [355, 610], 2)
         pygame.draw.line(window, WHITE, [155, 450], [155, 650], 4)
         pygame.draw.line(window, WHITE, [255, 450], [255, 650], 1)
+        window.blit(fourofakind32, [20, 455])
+        window.blit(fullhouse32, [20, 495])
+        window.blit(sstraight32, [20, 535])
+        window.blit(lstraight32, [20, 575])
+        window.blit(yacht32, [20, 615])
         window.blit(text_fourofakind, [65, 460])
         window.blit(text_fullhouse, [65, 500])
         window.blit(text_sstraight, [65, 540])
@@ -100,6 +112,7 @@ def main():
         pygame.draw.rect(window,WHITE, [15, 405, 340, 40], 2)
         pygame.draw.line(window, WHITE, [155, 405], [155, 445], 4)
         pygame.draw.line(window, WHITE, [255, 405], [255, 445], 1)
+        window.blit(choice32, [20, 410])
         window.blit(text_choice, [65, 415])
 
         #score ace to sixes 340, 300
