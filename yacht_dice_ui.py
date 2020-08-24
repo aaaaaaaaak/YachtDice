@@ -7,6 +7,42 @@ SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+CWHITE = (135, 135, 135)
+
+class Menu:
+    hovered = False
+
+    def __init__(self, text, pos):
+        self.text = text
+        self.pos = pos
+        self.set_rect()
+        self.draw()
+    
+
+    def get_color(self):
+        if self.hovered:
+            return WHITE
+        else:
+            return CWHITE
+    
+
+    def set_rend(self):
+        self.rend = font_obj24.render(self.text, False, self.get_color())
+    
+    
+    def set_rect(self):
+        self.set_rend()
+        self.rect = self.rend.get_rect()
+        self.rect.topleft = self.pos
+    
+
+    def draw(self):
+        self.set_rend()
+        window.blit(self.rend, self.rect)
+
+
+# add class Score
+
 
 pygame.init()
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -54,14 +90,9 @@ text_fullhouse = font_obj16.render("F.House", False, WHITE)
 text_sstraight = font_obj16.render("S.Strght", False, WHITE)
 text_lstraight = font_obj16.render("L.Strght", False, WHITE)
 text_yacht = font_obj16.render("Yacht", False, WHITE)
-text_start = font_obj24.render("Start", False, WHITE)
-text_settings = font_obj24.render("Settings", False, WHITE)
-text_quit = font_obj24.render("Quit", False, WHITE)
-text_alone = font_obj24.render("Alone", False, WHITE)
-text_together = font_obj24.render("Together", False, WHITE)
 
 fps_clock = pygame.time.Clock()
-
+menus = [Menu("Start", [80, 440]), Menu("Settings", [80, 520]), Menu("Quit", [80, 600])]
 
 
 def maingame():
@@ -149,32 +180,42 @@ def boards():
 
 
 def lobby():
-    window.blit(text_title, [80, 60])
-    window.blit(text_start, [80, 440])
-    window.blit(text_settings, [80, 520])
-    window.blit(text_quit, [80, 600])
+    l_clicked = [False]
 
-#def lobby_event():
-    #if 80 <= mouse[0] <= 160 and 440 <= mouse[1] <= 470 # start
-    #if 80 <= mouse[0] <= 210 and 520 <= mouse[1] <= 550 # settings
-    #if 80 <= mouse[0] <= 140 and 600 <= mouse[1] <= 630 # quit
+    window.blit(text_title, [80, 60])
+    for menu in menus:
+        if menu.rect.collidepoint(pygame.mouse.get_pos()):
+            menu.hovered = True
+            if pygame.mouse.get_pressed()[0]:
+                l_clicked[0] = True
+                l_clicked.append(menu.text)
+        else:
+            menu.hovered = False
+        menu.draw()
     
+    return l_clicked
 
 
 def main():
-    
+    clicked = False
 
     while True:
         window.fill(BLACK)
 
-        event = pygame.event.poll()
-        if event.type == pygame.QUIT:
-            break
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
 
-        # maingame()
-        lobby()
-        mouse = pygame.mouse.get_pos()
-        print(mouse)
+        if not clicked:
+            tmp = lobby()
+            clicked = tmp[0]
+        else:
+            if tmp[1] == "Start":
+                maingame()
+            if tmp[1] == "Quit":
+                break
+
+        
 
         pygame.display.update()
         fps_clock.tick(30)
@@ -182,4 +223,5 @@ def main():
 
     pygame.quit()
 
-main()
+if __name__ == "__main__":
+    main()
