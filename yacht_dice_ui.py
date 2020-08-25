@@ -90,12 +90,14 @@ text_fullhouse = font_obj16.render("F.House", False, WHITE)
 text_sstraight = font_obj16.render("S.Strght", False, WHITE)
 text_lstraight = font_obj16.render("L.Strght", False, WHITE)
 text_yacht = font_obj16.render("Yacht", False, WHITE)
+text_com = font_obj24.render("COM", False, WHITE)
+text_player = font_obj24.render("P1", False, WHITE)
 
 fps_clock = pygame.time.Clock()
 menus = [Menu("Start", [80, 440]), Menu("Settings", [80, 520]), Menu("Quit", [80, 600])]
 
 
-def maingame():
+def set_gameboard():
     boards()
 
 
@@ -120,6 +122,8 @@ def boards():
     # player
     pygame.draw.rect(window, WHITE, [155, 40, 200, 60], 2)
     pygame.draw.line(window, WHITE, [255, 40], [255, 100], 2)
+    window.blit(text_com, [270, 55])
+    window.blit(text_player, [192, 55])
     
     # upper section
     pygame.draw.rect(window, WHITE, [15, 100, 340, 300], 2)
@@ -180,14 +184,14 @@ def boards():
 
 
 def lobby():
-    l_clicked = [False]
+    l_clicked = [True, ""]
 
     window.blit(text_title, [80, 60])
     for menu in menus:
         if menu.rect.collidepoint(pygame.mouse.get_pos()):
             menu.hovered = True
             if pygame.mouse.get_pressed()[0]:
-                l_clicked[0] = True
+                l_clicked[0] = False
                 l_clicked.append(menu.text)
         else:
             menu.hovered = False
@@ -197,25 +201,36 @@ def lobby():
 
 
 def main():
-    clicked = False
+    in_lobby = True
+    in_game = False
 
-    while True:
+    while in_lobby:
         window.fill(BLACK)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
 
-        if not clicked:
-            tmp = lobby()
-            clicked = tmp[0]
-        else:
-            if tmp[1] == "Start":
-                maingame()
-            if tmp[1] == "Quit":
-                break
-
+        tmp = lobby()
+        in_lobby = tmp[0]
+        in_game = not in_lobby
         
+        if tmp[1] == "Start":
+            break
+        if tmp[1] == "Quit":
+            pygame.quit()
+
+        pygame.display.update()
+        fps_clock.tick(30)
+    
+    while in_game:
+        window.fill(BLACK)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+        
+        set_gameboard()
 
         pygame.display.update()
         fps_clock.tick(30)
