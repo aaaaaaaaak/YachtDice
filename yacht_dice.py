@@ -73,6 +73,10 @@ class Turn: # 점수 판정 및 주사위 합쳐서 구성
         # if onUp == TRUE:
         self.dc.roll_dice()
 
+    
+    # def set_turn(self):
+
+
 class Score: # 점수 판정, 핸드 랭크
     __all_dice = []
 
